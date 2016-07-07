@@ -1,0 +1,22 @@
+group 'ua.nomaddev.episodes'
+version '1.0-SNAPSHOT'
+
+buildscript {
+
+    ext {
+        kotlinVersion = '1.0.3'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3"
+    }
+}
+
+apply plugin: 'kotlin'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.3"
+}
