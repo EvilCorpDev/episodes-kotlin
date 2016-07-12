@@ -6,17 +6,26 @@ buildscript {
     ext {
         kotlinVersion = '1.0.3'
     }
-
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.3"
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     }
 }
 
 apply plugin: 'kotlin'
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.3"
+    compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.1.RELEASE'
+
+
 }
