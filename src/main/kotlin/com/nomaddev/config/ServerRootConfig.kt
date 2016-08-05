@@ -2,11 +2,16 @@ package com.nomaddev.config
 
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.web.servlet.config.annotation.EnableWebMvc
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
-/**
- * Created by Zakhar_Kliap on 07-Jul-16.
- */
 @Configuration
-@ComponentScan("com.mkyong.helloworld.service")
-class ServerRootConfig {
+@EnableWebMvc
+@ComponentScan("com.nomaddev")
+class ServerRootConfig : WebMvcConfigurerAdapter() {
+
+    override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/")
+    }
 }
