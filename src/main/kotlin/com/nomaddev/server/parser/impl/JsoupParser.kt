@@ -1,43 +1,59 @@
 package com.nomaddev.server.parser.impl
 
 import com.nomaddev.server.episode.entity.Episode
-import com.nomaddev.server.episode.enum.SupportedSites
+import com.nomaddev.server.episode.enum.SupportedSites.*
+import com.nomaddev.server.exception.UnsuportedTagEntity
 import com.nomaddev.server.exception.UnsupportedSiteException
 import com.nomaddev.server.parser.ParserPattern
 import com.nomaddev.server.parser.builder.ParserBuilder
-import com.nomaddev.server.parser.builder.entity.HtmlChain
-import com.nomaddev.server.parser.builder.entity.HtmlChainElement
+import com.nomaddev.server.parser.builder.entity.SelectorChain
+import com.nomaddev.server.parser.builder.entity.TagEntity.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
+import org.springframework.util.ReflectionUtils
+import java.net.URI
 
 @Component
 class JsoupParser @Autowired constructor(val applicationContext: ApplicationContext) : ParserPattern {
 
+    private val PATH_SEPARATOR = '/'
+
     override fun parse(url: String): Episode {
         val builder = getCorrectParserBuilder(url)
-        val doc: Document = Jsoup.connect(url).get()
-        return Episode(getEpisode(builder.episode, doc), getImg(builder.img, doc), getTitle(builder.title, doc))
+        val doc = Jsoup.connect(url).get()
+        return Episode(extractDigits(getElement(builder.episode, doc)), getElement(builder.img, doc).toString(),
+                getElement(builder.title, doc).toString())
     }
 
-    private fun getTitle(builder: HtmlChain, doc: Document): String {
-        //doc.select()
-        return ""
+    private fun getElement(builder: SelectorChain, doc: Document): Any {
+        val element = doc.select(builder.constructSelector())[0]
+        return when (builder.attr.type) {
+            ATTRIBUTE -> element.attr(builder.attr.value)
+            METHOD -> {
+                val findMethod = ReflectionUtils.findMethod(element.javaClass, builder.attr.value)
+                return ReflectionUtils.invokeMethod(findMethod, element)
+            }
+            else -> throw UnsuportedTagEntity("We doesn't support entity with type ${builder.attr.type} yet.")
+        }
     }
 
-    private fun getImg(builder: HtmlChain, doc: Document): String {
-        return ""
-    }
-
-    private fun getEpisode(builder: HtmlChain, doc: Document): Int {
-        return 0
+    private fun extractDigits(str: Any): Double {
+        var toString = str.toString()
+        if(toString.last().equals(PATH_SEPARATOR)) {
+            toString = toString().dropLast(1)
+        }
+        return toString.substring(toString.lastIndexOf(PATH_SEPARATOR)).replace("\\D+".toRegex(), "").toDouble()
     }
 
     private fun getCorrectParserBuilder(url: String): ParserBuilder {
-        return when (url) {
-            SupportedSites.READMANGA_TODAY.name -> applicationContext.getBean("readmangaTodayParser") as ParserBuilder
+        return when (URI.create(url).host) {
+            URI.create(READMANGA_TODAY.url).host -> applicationContext.getBean(READMANGA_TODAY.beanName) as ParserBuilder
+            URI.create(READMANGA_ME.url).host -> applicationContext.getBean(READMANGA_ME.beanName) as ParserBuilder
+            URI.create(MANGA_FOX.url).host -> applicationContext.getBean(MANGA_FOX.beanName) as ParserBuilder
+            URI.create(MANGA_READER.url).host -> applicationContext.getBean(MANGA_READER.beanName) as ParserBuilder
             else -> throw UnsupportedSiteException("We doesn't support site that you currently trying to get info")
         }
     }

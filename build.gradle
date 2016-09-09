@@ -48,7 +48,7 @@ dependencies {
 }
 
 gretty {
-    port = 5000
-    contextPath = 'img-server'
+    port = 3030
+    contextPath = 'manga'
     servletContainer = 'jetty9'
 }
