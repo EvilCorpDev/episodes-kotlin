@@ -1,7 +1,7 @@
 package com.nomaddev.server.parser.impl
 
-import com.nomaddev.server.episode.entity.Episode
-import com.nomaddev.server.episode.enum.SupportedSites.*
+import com.nomaddev.server.manga.entity.Episode
+import com.nomaddev.server.manga.enum.SupportedSites.*
 import com.nomaddev.server.exception.UnsuportedTagEntity
 import com.nomaddev.server.exception.UnsupportedSiteException
 import com.nomaddev.server.parser.ParserPattern

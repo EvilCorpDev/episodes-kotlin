@@ -1,6 +1,6 @@
 package com.nomaddev.server.parser
 
-import com.nomaddev.server.episode.entity.*
+import com.nomaddev.server.manga.entity.*
 
 interface ParserPattern {
 

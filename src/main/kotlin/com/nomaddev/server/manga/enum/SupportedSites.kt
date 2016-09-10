@@ -1,4 +1,4 @@
-package com.nomaddev.server.episode.enum
+package com.nomaddev.server.manga.enum
 
 enum class SupportedSites(val url: String, val beanName: String) {
 
