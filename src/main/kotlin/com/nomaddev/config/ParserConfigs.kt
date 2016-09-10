@@ -31,5 +31,5 @@ open class ParserConfigs {
     open fun mangaReader() = ParserBuilder(SupportedSites.MANGA_READER,
             title = SelectorChain(ExecuteAction("html", METHOD)).append("#mangaproperties").append("h1"),
             img = SelectorChain(ExecuteAction("src", ATTRIBUTE)).append("#mangaimg").append("img"),
-            episode = SelectorChain(ExecuteAction("href", ATTRIBUTE)).append("#latestchapters"))
+            episode = SelectorChain(ExecuteAction("href", ATTRIBUTE)).append("#latestchapters").append("ul").append("a"))
 }

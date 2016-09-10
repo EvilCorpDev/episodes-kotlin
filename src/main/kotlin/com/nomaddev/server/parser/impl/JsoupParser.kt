@@ -41,11 +41,11 @@ class JsoupParser @Autowired constructor(val applicationContext: ApplicationCont
     }
 
     private fun extractDigits(str: Any): Double {
-        var toString = str.toString()
-        if(toString.last().equals(PATH_SEPARATOR)) {
-            toString = toString().dropLast(1)
+        var digitsString = str.toString()
+        if(digitsString.last().equals(PATH_SEPARATOR)) {
+            digitsString = digitsString.dropLast(1)
         }
-        return toString.substring(toString.lastIndexOf(PATH_SEPARATOR)).replace("\\D+".toRegex(), "").toDouble()
+        return digitsString.substring(digitsString.lastIndexOf(PATH_SEPARATOR)).replace("\\D+".toRegex(), "").toDouble()
     }
 
     private fun getCorrectParserBuilder(url: String): ParserBuilder {
