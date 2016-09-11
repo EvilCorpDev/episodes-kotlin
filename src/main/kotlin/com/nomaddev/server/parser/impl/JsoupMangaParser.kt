@@ -4,7 +4,7 @@ import com.nomaddev.server.manga.entity.Episode
 import com.nomaddev.server.manga.enum.SupportedSites.*
 import com.nomaddev.server.exception.UnsuportedTagEntity
 import com.nomaddev.server.exception.UnsupportedSiteException
-import com.nomaddev.server.parser.ParserPattern
+import com.nomaddev.server.parser.MangaParserPattern
 import com.nomaddev.server.parser.builder.ParserBuilder
 import com.nomaddev.server.parser.builder.entity.SelectorChain
 import com.nomaddev.server.parser.builder.entity.TagEntity.*
@@ -14,14 +14,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 import org.springframework.util.ReflectionUtils
+import org.springframework.util.StringUtils
 import java.net.URI
 
 @Component
-class JsoupParser @Autowired constructor(val applicationContext: ApplicationContext) : ParserPattern {
+class JsoupMangaParser @Autowired constructor(val applicationContext: ApplicationContext) : MangaParserPattern {
 
     private val PATH_SEPARATOR = '/'
 
-    override fun parse(url: String): Episode {
+    override fun getLastEpisode(url: String): Episode {
+        val builder = getCorrectParserBuilder(url)
+        val doc = Jsoup.connect(url).get()
+        return Episode(extractDigits(getElement(builder.episode, doc)), "", "")
+    }
+
+    override fun getFullInfo(url: String): Episode {
         val builder = getCorrectParserBuilder(url)
         val doc = Jsoup.connect(url).get()
         return Episode(extractDigits(getElement(builder.episode, doc)), getElement(builder.img, doc).toString(),

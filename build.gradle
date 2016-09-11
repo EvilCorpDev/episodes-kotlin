@@ -44,6 +44,11 @@ dependencies {
 
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
+    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '1.9.2.RELEASE'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.3.0'
+
+
+
 
 }
 
