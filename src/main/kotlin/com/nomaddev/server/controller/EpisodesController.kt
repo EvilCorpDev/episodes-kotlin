@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 class EpisodesController @Autowired constructor(val episodesService: EpisodesService) {
 
     @RequestMapping(value = "/episodes/{title}", method = arrayOf(RequestMethod.GET))
-    fun getLastEpisode(@PathVariable("title") managaUrl: String): Manga {
-        return episodesService.saveManga(managaUrl)
+    fun getLastEpisode(@PathVariable("title") mangaUrl: String): Manga {
+        return episodesService.saveManga(mangaUrl)
     }
 
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.GET))
@@ -29,7 +29,7 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     }
 
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.POST))
-    fun addNewManga(mangaUrl: String) {
-
+    fun addNewManga(mangaUrl: String): Manga {
+        return episodesService.saveManga(mangaUrl)
     }
 }
