@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service
-class EpisodesService @Autowired constructor(val mangaOps: MangaOperations, val parser: MangaParserPattern){
+open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations, val parser: MangaParserPattern){
 
     fun saveNewManga(url: String): Manga {
         val episode = parser.getFullInfo(url)
@@ -25,4 +25,13 @@ class EpisodesService @Autowired constructor(val mangaOps: MangaOperations, val 
         return Manga(episode = newEpisode.episode, title = mangaByTitle.title, img = mangaByTitle.img,
                 url = mangaByTitle.url, updateTime = LocalDateTime.now())
     }
+
+    fun updateMangaEpisode(manga: Manga): Manga {
+        val newEpisode = parser.getLastEpisode(manga.url)
+        mangaOps.updateEpisodeByTitle(newEpisode.episode, manga.title)
+        return Manga(episode = newEpisode.episode, title = manga.title, img = manga.img,
+                url = manga.url, updateTime = LocalDateTime.now())
+    }
+
+    fun listAllMangas() = mangaOps.findAllManga()
 }
