@@ -5,12 +5,15 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.convert.Jsr310Converters
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
+@EnableWebSecurity
 @ComponentScan("com.nomaddev")
 open class ServerRootConfig : WebMvcConfigurerAdapter() {
 
@@ -26,4 +29,7 @@ open class ServerRootConfig : WebMvcConfigurerAdapter() {
 
     @Bean
     open fun localDateTimeToStringConveter() = LocalDateTimeToStringConverter()
+
+    @Bean
+    open fun bCryptEncoder() = BCryptPasswordEncoder()
 }

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Update
 import org.springframework.stereotype.Repository
 
 @Repository
-open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate){
+open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
 
     fun findOneByTitle(title: String): Manga {
         val findQuery = Query().addCriteria(Criteria.where("title").`is`(title))

@@ -1,31 +1,33 @@
-package com.nomaddev.config
+package com.nomaddev.config.db
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.PropertySource
+import org.springframework.core.env.Environment
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 
 @Configuration
 @PropertySource("classpath:application.properties")
-open class RedisConfig() {
+open class RedisConfig @Autowired constructor(val env: Environment) {
 
-    @Value("\${redis.endpoint}") lateinit var redisHost: String
-    @Value("\${redis.port}") lateinit var redisPort: String
-    @Value("\${redis.password}") lateinit var redisPass: String
+    val redisHost = "redis.endpoint"
+    val redisPort = "redis.port"
+    val redisPass = "redis.password"
 
     @Bean
-    fun jedisConnectionFactory(): JedisConnectionFactory {
+    open fun jedisConnectionFactory(): JedisConnectionFactory {
         val jedisConFactory = JedisConnectionFactory()
-        jedisConFactory.hostName = redisHost
-        jedisConFactory.port = redisPort.toInt()
-        jedisConFactory.password = redisPass
+        jedisConFactory.hostName = env.getProperty(redisHost)
+        jedisConFactory.port = env.getProperty(redisPort).toInt()
+        jedisConFactory.password = env.getProperty(redisPass)
         return jedisConFactory
     }
 
     @Bean
-    fun redisTemplate(): RedisTemplate<String, Any> {
+    open fun redisTemplate(): RedisTemplate<String, Any> {
         val template = RedisTemplate<String, Any>()
         template.connectionFactory = jedisConnectionFactory()
         return template

@@ -1,4 +1,4 @@
-package com.nomaddev.config
+package com.nomaddev.config.db
 
 import com.mongodb.MongoClient
 import com.mongodb.MongoCredential
@@ -16,10 +16,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 open class MongoDbConfig @Autowired constructor(val env: Environment): AbstractMongoConfiguration() {
 
     val mongoHost = "mongodb.host"
-    val mongoUser = "mongodb.host"
-    val mongoPass = "mongodb.host"
-    val mongoDbName = "mongodb.host"
-    val mongoPort = "mongodb.host"
+    val mongoUser = "mongodb.user"
+    val mongoPass = "mongodb.pass"
+    val mongoDbName = "mongodb.name"
+    val mongoPort = "mongodb.port"
 
     override fun mongo(): MongoClient {
         val credentials = MongoCredential.createCredential(env.getProperty(mongoUser), env.getProperty(mongoDbName),
