@@ -20,6 +20,12 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.GET))
     fun listAllEpisodes() = episodesService.listAllMangas()
 
+    @RequestMapping(value = "/episodes/new", method = arrayOf(RequestMethod.GET))
+    fun listNewEpisodes() = episodesService.listNewManga()
+
+    @RequestMapping(value = "/episodes/{title}/read", method = arrayOf(RequestMethod.PUT))
+    fun markAsRead(@PathVariable("title") mangaTitle: String) = episodesService.markAsRead(title = mangaTitle)
+
     @RequestMapping(value = "/episodes/{username}", method = arrayOf(RequestMethod.GET))
     fun listMyEpisodes(@PathVariable("username") username: String) {
 
