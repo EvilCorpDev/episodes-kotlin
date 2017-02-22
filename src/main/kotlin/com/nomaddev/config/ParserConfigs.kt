@@ -1,6 +1,6 @@
 package com.nomaddev.config
 
-import com.nomaddev.server.episode.enum.*
+import com.nomaddev.server.manga.enum.*
 import com.nomaddev.server.parser.builder.*
 import com.nomaddev.server.parser.builder.entity.*
 import com.nomaddev.server.parser.builder.entity.TagEntity.*
