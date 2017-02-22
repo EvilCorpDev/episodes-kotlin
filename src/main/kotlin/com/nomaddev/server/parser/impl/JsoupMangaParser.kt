@@ -24,18 +24,13 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
 
     override fun getLastEpisode(url: String): Episode {
         val builder = getCorrectParserBuilder(url)
-        val doc = Jsoup.connect(url).get()
+        val doc = downloadDoc(url)
         return Episode(extractDigits(getElement(builder.episode, doc)), "", "")
     }
 
     override fun getFullInfo(url: String): Episode {
         val builder = getCorrectParserBuilder(url)
-        val doc = Jsoup.connect(url)
-                .header("Accept-Encoding", "gzip, deflate")
-                .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
-                .maxBodySize(0)
-                .timeout(600000)
-                .get()
+        val doc = downloadDoc(url)
         return Episode(extractDigits(getElement(builder.episode, doc)), getElement(builder.img, doc).toString(),
                 getElement(builder.title, doc).toString())
     }
@@ -54,7 +49,7 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
 
     private fun extractDigits(str: Any): Double {
         var digitsString = str.toString()
-        if(digitsString.last().equals(PATH_SEPARATOR)) {
+        if (digitsString.last().equals(PATH_SEPARATOR)) {
             digitsString = digitsString.dropLast(1)
         }
         return digitsString.substring(digitsString.lastIndexOf(PATH_SEPARATOR)).replace("\\D+".toRegex(), "").toDouble()
@@ -68,5 +63,14 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
             URI.create(MANGA_READER.url).host -> applicationContext.getBean(MANGA_READER.beanName) as ParserBuilder
             else -> throw UnsupportedSiteException("We doesn't support site that you currently trying to get info")
         }
+    }
+
+    private fun downloadDoc(url: String): Document {
+        return Jsoup.connect(url)
+                .header("Accept-Encoding", "gzip, deflate")
+                .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
+                .maxBodySize(0)
+                .timeout(600000)
+                .get()
     }
 }
