@@ -21,6 +21,5 @@ class UserController
 
     @RequestMapping(value = "/users/profile", method = arrayOf(RequestMethod.PUT))
     fun updateUser(@RequestBody user: EpisodesUser) {
-
     }
 }

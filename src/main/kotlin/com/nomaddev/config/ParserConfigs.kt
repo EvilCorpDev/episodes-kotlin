@@ -25,7 +25,7 @@ open class ParserConfigs {
     open fun mangaFoxParser() = ParserBuilder(SupportedSites.MANGA_FOX,
             title = SelectorChain(ExecuteAction("html", METHOD)).append("#title").append("h1"),
             img = SelectorChain(ExecuteAction("src", ATTRIBUTE)).append(".cover").append("img"),
-            episode = SelectorChain(ExecuteAction("href", ATTRIBUTE)).append(".chlist").append("a.tips"))
+            episode = SelectorChain(ExecuteAction("text", METHOD)).append(".chlist").append("a.tips"))
 
     @Bean
     open fun mangaReader() = ParserBuilder(SupportedSites.MANGA_READER,

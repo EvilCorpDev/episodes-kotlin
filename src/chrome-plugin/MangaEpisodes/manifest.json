@@ -1,0 +1,30 @@
+{
+ "name": "Manga Episodes", // Название расширения
+ "manifest_version": 2,
+ "version": "1.0",
+ "description": "Parse last manga episode and notificate if new one comes", // Описание расширения
+
+ "permissions": [
+  "tabs", // Разрешить расширению работать с вкладками
+  "alarms",
+  "http://www.mangareader.net/*",
+  "http://www.mangareader.net/*",
+  "http://mangafox.me/*"
+ ],
+
+ "background": {
+    "scripts": ["js/timer-job.js", "js/App42-all-3.0.min.js", "js/jquery.min.js", "js/parser.js", "js/store.js"],
+    "persistent": false
+  },
+
+ "browser_action": { // Элементы браузера
+  "default_title": "Manga Episodes", // Название кнопки
+  "default_icon": "images/icon.png", // Иконка для кнопки
+  "icons": {
+  	"128": "images/icon.png",
+  	"48": "images/icon.png",
+  	"16": "images/icon.png"
+  },
+  "default_popup": "popup.html" // Всплывающее окно
+ }
+}

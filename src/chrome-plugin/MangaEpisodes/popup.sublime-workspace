@@ -1,0 +1,518 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"lang",
+				"language"
+			],
+			[
+				"la",
+				"lang"
+			],
+			[
+				"orde",
+				"orderBy〔variable〕"
+			],
+			[
+				"set",
+				"setUrlParam"
+			],
+			[
+				"order",
+				"orderBy"
+			],
+			[
+				"func",
+				"function〔keyword〕"
+			],
+			[
+				"get",
+				"getCart"
+			],
+			[
+				"onc",
+				"onchange	Attr"
+			],
+			[
+				"product",
+				"productId"
+			],
+			[
+				"produ",
+				"productId"
+			],
+			[
+				"parse",
+				"parseInt〔function〕"
+			],
+			[
+				"card",
+				"cardcountry"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"pa",
+				"paramValue"
+			],
+			[
+				"param",
+				"paramLength"
+			],
+			[
+				"para",
+				"parameters〔variable〕"
+			],
+			[
+				"sele",
+				"selected〔variable〕"
+			],
+			[
+				"Ca",
+				"Category"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"page",
+				"pageNumber〔argument〕"
+			],
+			[
+				"on",
+				"onLoadSetter"
+			],
+			[
+				"sc",
+				"script	Tag"
+			],
+			[
+				"V",
+				"Vendor2"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"border",
+				"border-width"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"ele",
+				"electric"
+			],
+			[
+				"vend",
+				"vendor1"
+			],
+			[
+				"ty",
+				"type=〔attribute〕"
+			],
+			[
+				"hea",
+				"header"
+			],
+			[
+				"ca",
+				"captchaError"
+			],
+			[
+				"de",
+				"debitis"
+			],
+			[
+				"signup",
+				"signupBean"
+			],
+			[
+				"value",
+				"value=〔attribute〕"
+			],
+			[
+				"sign",
+				"signupBean"
+			],
+			[
+				"is",
+				"isDelivered"
+			],
+			[
+				"validat",
+				"validateSignUpForm"
+			],
+			[
+				"fi",
+				"firstname"
+			],
+			[
+				"chec",
+				"checkedParams"
+			],
+			[
+				"val",
+				"value=〔attribute〕"
+			],
+			[
+				"cap",
+				"captchaHelp"
+			],
+			[
+				"che",
+				"checkedParams〔variable〕"
+			],
+			[
+				"onlo",
+				"onload	Attr"
+			],
+			[
+				"capt",
+				"captchaError〔variable〕"
+			],
+			[
+				"capct",
+				"captchaError〔variable〕"
+			],
+			[
+				"ea",
+				"emailValidate"
+			],
+			[
+				"cha",
+				"change	.change()"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"displ",
+				"display: 〔property〕"
+			],
+			[
+				"log",
+				"loginElement〔variable〕"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"hi",
+				"hidden"
+			],
+			[
+				"pass",
+				"password〔variable〕"
+			],
+			[
+				"fir",
+				"firstname〔variable〕"
+			],
+			[
+				"se",
+				"secondname"
+			],
+			[
+				"passCo",
+				"passConfirmElement〔argument〕"
+			],
+			[
+				"change",
+				"changeBackground"
+			],
+			[
+				"chan",
+				"changeBackground〔function〕"
+			],
+			[
+				"logi",
+				"loginElement〔argument〕"
+			],
+			[
+				"name",
+				"nameElement"
+			],
+			[
+				"onkey",
+				"onkeypress	Attr"
+			],
+			[
+				"onke",
+				"onkeypress	Attr"
+			],
+			[
+				"validate",
+				"validateSignUpForm〔function〕"
+			],
+			[
+				"password",
+				"passwordconfirm"
+			],
+			[
+				"va",
+				"validateName"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"ema",
+				"emailValidate"
+			],
+			[
+				"login",
+				"login〔function〕"
+			],
+			[
+				"passCon",
+				"passConfirmELemnt〔argument〕"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pac",
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/header.jspf",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/login.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/error.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/numberIncrement.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/loadSetter.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/main.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/css/static.css",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/WEB-INF/tags/langSwitcher.tag",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/shop.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/banPage.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/signup.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/cart.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/checkout.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/checkout-confirm.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/order-status.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/css/sidebar.css",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/requestSender.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/pageLinker.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/languageSwitcher.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/messages.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/resources/resources_ru.properties",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/js.cookie.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/jquery.min.js",
+		"/C/Users/ZAKHAR~1/AppData/Local/Temp/7zECC86.tmp/jquery.cookie.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/checkout-confirm.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/css/checkbox-style.css",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/css/radio-style.css",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/WEB-INF/tags/loginForm.tag",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/validator/LoginValidator.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/validator/SignUpValidator.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/signup.html",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/index.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/checkBoxSetter.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/shop.html",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/WEB-INF/tags/captcha.tld",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/login.html",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/validator/SignUpValidatorOnlyJS.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/js/validator/LoginValidatorOnlyJS.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/src/main/webapp/res/jsp/captcha.jsp",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/res/signup.html",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/res/js/validator/LoginValidator.js",
+		"/D/dev/workspace/Zakhar_Kliap/WebShop/res/signUpOnlyJS.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/js/validator/LoginValidatorOnlyJS.js",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/loginOnlyJS.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/login.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/signup.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/js/validator/LoginValidator.js",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/js/validator/SignUpValidatorOnlyJS.js",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/index.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/signUpOnlyJS.html",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/js/validator/SignUpValidator.js",
+		"/C/Users/Zakhar_Kliap/IdeaProjects/WebShop/res/style.css"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"log",
+			"logout",
+			"getPrice",
+			"}\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"}\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "popup.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"actions"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

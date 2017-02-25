@@ -23,9 +23,21 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
         mongoOps.updateFirst(findQuery, update, Manga::class.java)
     }
 
+    fun markAsReadByTitle(title: String) {
+        val findQuery = Query().addCriteria(Criteria.where("title").`is`(title))
+        val update = Update()
+        update.set("isNew", false)
+        mongoOps.updateFirst(findQuery, update, Manga::class.java)
+    }
+
     fun saveManga(manga: Manga) {
         mongoOps.save(manga)
     }
 
     fun findAllManga() = mongoOps.findAll(Manga::class.java)
+
+    fun findNewManga(): List<Manga> {
+        val query = Query.query(Criteria.where("isNew").`is`(true))
+        return mongoOps.find(query, Manga::class.java)
+    }
 }
