@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 class EpisodesController @Autowired constructor(val episodesService: EpisodesService) {
@@ -34,5 +35,10 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.POST))
     fun addNewManga(@RequestParam("mangaUrl") mangaUrl: String): Manga {
         return episodesService.saveNewManga(mangaUrl)
+    }
+
+    @RequestMapping(value = "/upload", method = arrayOf(RequestMethod.POST))
+    fun importMangaFromJson(@RequestParam("file") uploaded : MultipartFile) {
+        episodesService.importMangaFromJson(uploaded)
     }
 }
