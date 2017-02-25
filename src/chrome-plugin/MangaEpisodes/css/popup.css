@@ -1,0 +1,47 @@
+.manga-btn {
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+	float: right;
+}
+
+.read-btn {
+	margin-right: 10px;
+	display: none;	
+}
+
+.manga-episodes_add-manga {
+	padding: 10px;
+	float: right;
+}
+
+.list-element {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: 10px 10px 5px #888888;
+	float: right;
+	width: 470px;
+}
+
+.list-element__new-episode {
+	box-shadow: 10px 10px 5px #009933;
+}
+
+.inline {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.empty-input {
+    box-shadow: 0 0 10px #990033;
+}
+
+body {
+   width:500px;
+}
+
+input {
+	width: 400px;
+}

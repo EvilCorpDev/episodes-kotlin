@@ -52,7 +52,12 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
         if (digitsString.last().equals(PATH_SEPARATOR)) {
             digitsString = digitsString.dropLast(1)
         }
-        return digitsString.substring(digitsString.lastIndexOf(PATH_SEPARATOR)).replace("\\D+".toRegex(), "").toDouble()
+        if(digitsString.indexOf(PATH_SEPARATOR) != -1) {
+            return digitsString.substring(digitsString.lastIndexOf(PATH_SEPARATOR))
+                    .replace("\\D+".toRegex(), "").toDouble()
+        } else {
+            return digitsString.replace("\\D+".toRegex(), "").toDouble()
+        }
     }
 
     private fun getCorrectParserBuilder(url: String): ParserBuilder {
