@@ -46,15 +46,19 @@ function delManga($element) {
 
 function deleteMangaFromStorage(title, $element) {
     $element.remove();
+    var deletedElement;
     var allManga = JSON.parse(localStorage.getItem('allManga'));
     for (var i = 0; i < allManga.length; i++) {
         if (allManga[i].title === title) {
+            deletedElement = allManga[i];
             allManga.splice(i, 1);
             break;
         }
     }
     localStorage.setItem('allManga', JSON.stringify(allManga));
-    changeNewCount(false);
+    if(deletedElement.isNew) {
+        changeNewCount(false);
+    }
 }
 
 function readManga($element) {
