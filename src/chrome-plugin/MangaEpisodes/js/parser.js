@@ -35,21 +35,22 @@ function updateLocalStorage(callback) {
 
 function delManga($element) {
     var title = $element.find('a').text();
+    var id = getElementId(title);
     $.ajax({
-        url: options.serverUrl + '/episodes?title=' + title.replace(/\s+/g, '_'),
+        url: options.serverUrl + format('/episodes/id/{id}', {id: id}),
         type: 'DELETE',
         success: function () {
-            deleteMangaFromStorage(title, $element);
+            deleteMangaFromStorage(id, $element);
         }
     });
 }
 
-function deleteMangaFromStorage(title, $element) {
+function deleteMangaFromStorage(id, $element) {
     $element.remove();
-    var deletedElement;
+    var deletedElement = {};
     var allManga = JSON.parse(localStorage.getItem('allManga'));
     for (var i = 0; i < allManga.length; i++) {
-        if (allManga[i].title === title) {
+        if (allManga[i].id === id) {
             deletedElement = allManga[i];
             allManga.splice(i, 1);
             break;
@@ -63,9 +64,9 @@ function deleteMangaFromStorage(title, $element) {
 
 function readManga($element) {
     var title = $element.find('a').text();
-    var titleWithoutSpaces = title.replace(/\s+/g, '_');
+    var id = getElementId(title);
     $.ajax({
-        url: options.serverUrl + format('/episodes/{title}/read', {title: titleWithoutSpaces}),
+        url: options.serverUrl + format('/episodes/id/{id}/read', {id: id}),
         type: 'PUT',
         success: function () {
             updateLocalStorageIsNew(title, false);
@@ -119,4 +120,13 @@ function format(str, args) {
     return str.replace(/{(\w+)}/g, function (m, n) {
         return args[n] ? args[n] : m;
     });
+}
+
+function getElementId(title) {
+    var allManga = JSON.parse(localStorage.getItem('allManga'));
+    for (var i = 0; i < allManga.length; i++) {
+        if (allManga[i].title === title) {
+            return allManga[i].id;
+        }
+    }
 }

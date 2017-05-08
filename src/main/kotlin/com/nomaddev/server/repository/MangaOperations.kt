@@ -45,4 +45,27 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
         val findQuery = Query().addCriteria(Criteria.where("title").`is`(title))
         return mongoOps.findAndRemove(findQuery, Manga::class.java)
     }
+
+    fun findOneById(mangaId: String): Manga {
+        return mongoOps.findById(mangaId, Manga::class.java)
+    }
+
+    fun updateEpisodeById(episode: Double, mangaId: String) {
+        val findQuery = Query().addCriteria(Criteria.where("id").`is`(mangaId))
+        val update = Update()
+        update.set("episode", episode)
+        mongoOps.updateFirst(findQuery, update, Manga::class.java)
+    }
+
+    fun markAsReadById(mangaId: String) {
+        val findQuery = Query().addCriteria(Criteria.where("id").`is`(mangaId))
+        val update = Update()
+        update.set("isNew", false)
+        mongoOps.updateFirst(findQuery, update, Manga::class.java)
+    }
+
+    fun delMangaById(mangaId: String): Manga {
+        val findQuery = Query().addCriteria(Criteria.where("id").`is`(mangaId))
+        return mongoOps.findAndRemove(findQuery, Manga::class.java)
+    }
 }

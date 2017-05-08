@@ -14,14 +14,22 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
         return episodesService.updateMangaEpisode(mangaTitle.replace("_", " "))
     }
 
+    @RequestMapping(value = "/episodes/last/id/{id}", method = arrayOf(RequestMethod.GET))
+    fun getLastEpisodeById(@PathVariable("id") mangaId: String): Manga {
+        return episodesService.updateMangaEpisodeById(mangaId)
+    }
+
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.GET))
     fun listAllEpisodes() = episodesService.listAllMangas()
 
     @RequestMapping(value = "/episodes/new", method = arrayOf(RequestMethod.GET))
     fun listNewEpisodes() = episodesService.listNewManga()
 
-    @RequestMapping(value = "/episodes/{title}/read", method = arrayOf(RequestMethod.PUT))
+    @RequestMapping(value = "/episodes/title/{title}/read", method = arrayOf(RequestMethod.PUT))
     fun markAsRead(@PathVariable("title") mangaTitle: String) = episodesService.markAsRead(title = mangaTitle.replace("_", " "))
+
+    @RequestMapping(value = "/episodes/id/{id}/read", method = arrayOf(RequestMethod.PUT))
+    fun markAsReadById(@PathVariable("id") mangaId: String) = episodesService.markAsReadById(mangaId)
 
     @RequestMapping(value = "/episodes/{username}", method = arrayOf(RequestMethod.GET))
     fun listMyEpisodes(@PathVariable("username") username: String) {
@@ -37,6 +45,10 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     fun importMangaFromJson(@RequestParam("file") uploaded : MultipartFile) {
         episodesService.importMangaFromJson(uploaded)
     }
+
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.DELETE))
     fun delManga(@RequestParam("title") mangaTitle: String) = episodesService.delManga(title = mangaTitle.replace("_", " "))
+
+    @RequestMapping(value = "/episodes/id/{id}", method = arrayOf(RequestMethod.DELETE))
+    fun delMangaById(@PathVariable("id") mangaId: String) = episodesService.delMangaById(mangaId)
 }

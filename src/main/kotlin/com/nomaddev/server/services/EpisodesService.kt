@@ -63,4 +63,18 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
     fun delManga(title: String) {
         mangaOps.delManga(title)
     }
+
+    fun updateMangaEpisodeById(mangaId: String): Manga {
+        val mangaById = mangaOps.findOneById(mangaId)
+        val newEpisode = parser.getLastEpisode(mangaById.url)
+        mangaOps.updateEpisodeById(newEpisode.episode, mangaId)
+        return Manga(episode = newEpisode.episode, title = mangaById.title, img = mangaById.img,
+                url = mangaById.url, updateTime = LocalDateTime.now(), isNew = true)
+    }
+
+    fun markAsReadById(mangaId: String) = mangaOps.markAsReadById(mangaId)
+
+    fun delMangaById(mangaId: String) {
+        mangaOps.delMangaById(mangaId)
+    }
 }
