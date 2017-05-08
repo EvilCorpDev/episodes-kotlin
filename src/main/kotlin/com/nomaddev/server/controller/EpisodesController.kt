@@ -3,11 +3,7 @@ package com.nomaddev.server.controller
 import com.nomaddev.server.manga.entity.Manga
 import com.nomaddev.server.services.EpisodesService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
 @RestController
@@ -25,7 +21,7 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     fun listNewEpisodes() = episodesService.listNewManga()
 
     @RequestMapping(value = "/episodes/{title}/read", method = arrayOf(RequestMethod.PUT))
-    fun markAsRead(@PathVariable("title") mangaTitle: String) = episodesService.markAsRead(title = mangaTitle)
+    fun markAsRead(@PathVariable("title") mangaTitle: String) = episodesService.markAsRead(title = mangaTitle.replace("_", " "))
 
     @RequestMapping(value = "/episodes/{username}", method = arrayOf(RequestMethod.GET))
     fun listMyEpisodes(@PathVariable("username") username: String) {
@@ -41,4 +37,6 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     fun importMangaFromJson(@RequestParam("file") uploaded : MultipartFile) {
         episodesService.importMangaFromJson(uploaded)
     }
+    @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.DELETE))
+    fun delManga(@RequestParam("title") mangaTitle: String) = episodesService.delManga(title = mangaTitle.replace("_", " "))
 }

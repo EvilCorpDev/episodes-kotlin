@@ -1,7 +1,6 @@
 package com.nomaddev.server.services
 
 import com.google.gson.Gson
-import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import com.nomaddev.server.manga.entity.Manga
 import com.nomaddev.server.parser.MangaParserPattern
@@ -59,5 +58,9 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
                     .map { gson.fromJson(it, Manga::class.java) }
             mangas.forEach { item -> saveNewManga(item.url) }
         }
+    }
+
+    fun delManga(title: String) {
+        mangaOps.delManga(title)
     }
 }

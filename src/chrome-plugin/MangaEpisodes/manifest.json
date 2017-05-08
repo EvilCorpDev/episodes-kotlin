@@ -1,5 +1,5 @@
 {
- "name": "Manga Episodes", // Название расширения
+ "name": "Manga Episodes 2.0", // Название расширения
  "manifest_version": 2,
  "version": "1.0",
  "description": "Parse last manga episode and notificate if new one comes", // Описание расширения
@@ -8,12 +8,14 @@
   "tabs", // Разрешить расширению работать с вкладками
   "alarms",
   "http://www.mangareader.net/*",
-  "http://www.mangareader.net/*",
-  "http://mangafox.me/*"
+  "http://mangafox.me/*",
+  "http://readmanga.me/*",
+  "http://readmanga.today/*",
+  "http://localhost:3030/*"
  ],
 
  "background": {
-    "scripts": ["js/timer-job.js", "js/App42-all-3.0.min.js", "js/jquery.min.js", "js/parser.js", "js/store.js"],
+    "scripts": ["js/timer-job.js", "js/jquery.min.js", "js/config.js", "js/parser.js", "js/popup.js"],
     "persistent": false
   },
 

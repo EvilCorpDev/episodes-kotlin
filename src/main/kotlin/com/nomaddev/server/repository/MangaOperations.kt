@@ -40,4 +40,9 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
         val query = Query.query(Criteria.where("isNew").`is`(true))
         return mongoOps.find(query, Manga::class.java)
     }
+
+    fun delManga(title: String): Manga {
+        val findQuery = Query().addCriteria(Criteria.where("title").`is`(title))
+        return mongoOps.findAndRemove(findQuery, Manga::class.java)
+    }
 }
