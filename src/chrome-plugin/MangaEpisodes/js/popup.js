@@ -16,6 +16,8 @@ function showMangaEpisodes(mangaList) {
             newCount++;
         }
     }
+    $('.all-manga').text(mangaList.length);
+    $('.new-manga').text(newCount);
     chrome.browserAction.setBadgeText({text: newCount.toString()});
     $('.del-btn').click(function (event) {
         delManga($(event.target).parent());

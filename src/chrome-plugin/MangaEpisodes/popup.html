@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/config.js"></script>
-		<script src="js/parser.js"></script>
-		<script src="js/popup.js"></script>
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/popup.css">
-	</head>
-	<body>
-		<div class="manga-episodes_add-manga">
-			<input class="new-manga" name="new-manga" type='text'>
-			<img class="manga-btn refresh-btn" src="images/refresh.png">
-			<img class="manga-btn add-btn" src="images/add.png">
-		</div>
-		<div class="manga-episodes_chlist">
-			<dl class="manga-container"></dl>
-		</div>
-	</body>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/popup.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+<div class="manga-episodes_add-manga">
+    <input class="new-manga" name="new-manga" type='text'>
+    <img class="manga-btn refresh-btn" src="images/refresh.png">
+    <img class="manga-btn add-btn" src="images/add.png">
+</div>
+<div class="manga-count">
+    <label class="counter-left">All manga: <span class="all-manga"></span> items</label>
+    <label class="counter-right">Not read yet: <span class="new-manga"></span> items</label>
+</div>
+<div class="manga-episodes_chlist">
+    <dl class="manga-container"></dl>
+</div>
+</body>
 </html>
