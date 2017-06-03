@@ -61,7 +61,7 @@ dependencies {
 }
 
 gretty {
-    httpPort = 3030
+    httpPort = 8080
     contextPath = 'manga'
     servletContainer = 'jetty9'
 }
