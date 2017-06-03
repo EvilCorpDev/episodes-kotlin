@@ -11,7 +11,8 @@
   "http://mangafox.me/*",
   "http://readmanga.me/*",
   "http://readmanga.today/*",
-  "http://localhost:3030/*"
+  "http://localhost:3030/*",
+  "http://104.198.78.237:3030/*"
  ],
 
  "background": {
