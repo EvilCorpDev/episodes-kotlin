@@ -27,16 +27,24 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
     fun updateMangaEpisode(title: String): Manga {
         val mangaByTitle = mangaOps.findOneByTitle(title)
         val newEpisode = parser.getLastEpisode(mangaByTitle.url)
-        mangaOps.updateEpisodeByTitle(newEpisode.episode, title)
-        return Manga(episode = newEpisode.episode, title = mangaByTitle.title, img = mangaByTitle.img,
-                url = mangaByTitle.url, updateTime = LocalDateTime.now(), isNew = true)
+        if(newEpisode.episode > 0) {
+            mangaOps.updateEpisodeByTitle(newEpisode.episode, title)
+            return Manga(episode = newEpisode.episode, title = mangaByTitle.title, img = mangaByTitle.img,
+                    url = mangaByTitle.url, updateTime = LocalDateTime.now(), isNew = true)
+        } else {
+            return mangaByTitle
+        }
     }
 
     fun updateMangaEpisode(manga: Manga): Manga {
         val newEpisode = parser.getLastEpisode(manga.url)
-        mangaOps.updateEpisodeByTitle(newEpisode.episode, manga.title)
+        var isNew = false
+        if(newEpisode.episode > manga.episode) {
+            mangaOps.updateEpisodeById(newEpisode.episode, manga.id!!)
+            isNew = true
+        }
         return Manga(episode = newEpisode.episode, title = manga.title, img = manga.img,
-                url = manga.url, updateTime = LocalDateTime.now(), isNew = true)
+                url = manga.url, updateTime = LocalDateTime.now(), isNew = isNew)
     }
 
     fun listAllMangas() = mangaOps.findAllManga()
