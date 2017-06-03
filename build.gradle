@@ -60,8 +60,13 @@ dependencies {
 
 }
 
+war{
+ archiveName = 'ROOT.war'
+ destinationDir = file('webapps')
+}
+
 gretty {
     httpPort = 8080
-    contextPath = 'manga'
+    contextPath = ''
     servletContainer = 'jetty9'
 }
