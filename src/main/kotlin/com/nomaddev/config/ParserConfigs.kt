@@ -13,7 +13,8 @@ open class ParserConfigs {
     open fun readMangaTodayParser() = ParserBuilder(SupportedSites.READMANGA_TODAY,
                 title = SelectorChain(ExecuteAction("html", METHOD)).append(".panel-heading").append("h1"),
                 img = SelectorChain(ExecuteAction("src", ATTRIBUTE)).append(".img-responsive"),
-                episode = SelectorChain(ExecuteAction("href", ATTRIBUTE)).append(".chp_lst").append("a"))
+                episode = SelectorChain(ExecuteAction("href", ATTRIBUTE)).append(".chp_lst").append("a"),
+                alternativeEpisode = SelectorChain(ExecuteAction("value", ATTRIBUTE)).append("select").append("option"))
 
     @Bean
     open fun readMangaMeParser() = ParserBuilder(SupportedSites.READMANGA_ME,

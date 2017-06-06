@@ -20,6 +20,7 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
         val findQuery = Query().addCriteria(Criteria.where("title").`is`(title))
         val update = Update()
         update.set("episode", episode)
+        update.set("isNew", true)
         mongoOps.updateFirst(findQuery, update, Manga::class.java)
     }
 
@@ -54,6 +55,7 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
         val findQuery = Query().addCriteria(Criteria.where("id").`is`(mangaId))
         val update = Update()
         update.set("episode", episode)
+        update.set("isNew", true)
         mongoOps.updateFirst(findQuery, update, Manga::class.java)
     }
 

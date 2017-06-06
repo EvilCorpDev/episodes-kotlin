@@ -60,6 +60,11 @@ dependencies {
 
 }
 
+war{
+ archiveName = 'ROOT.war'
+ destinationDir = file('webapps')
+}
+
 gretty {
     httpPort = 3030
     contextPath = 'manga'

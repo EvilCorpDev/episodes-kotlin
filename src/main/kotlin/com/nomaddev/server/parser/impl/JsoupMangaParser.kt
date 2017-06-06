@@ -1,31 +1,44 @@
 package com.nomaddev.server.parser.impl
 
-import com.nomaddev.server.manga.entity.Episode
-import com.nomaddev.server.manga.enum.SupportedSites.*
 import com.nomaddev.server.exception.UnsuportedTagEntity
 import com.nomaddev.server.exception.UnsupportedSiteException
+import com.nomaddev.server.manga.entity.Episode
+import com.nomaddev.server.manga.enum.SupportedSites.*
 import com.nomaddev.server.parser.MangaParserPattern
 import com.nomaddev.server.parser.builder.ParserBuilder
 import com.nomaddev.server.parser.builder.entity.SelectorChain
-import com.nomaddev.server.parser.builder.entity.TagEntity.*
+import com.nomaddev.server.parser.builder.entity.TagEntity.ATTRIBUTE
+import com.nomaddev.server.parser.builder.entity.TagEntity.METHOD
+import org.apache.commons.lang3.StringUtils
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 import org.springframework.util.ReflectionUtils
-import org.springframework.util.StringUtils
 import java.net.URI
 
 @Component
-class JsoupMangaParser @Autowired constructor(val applicationContext: ApplicationContext) : MangaParserPattern {
+open class JsoupMangaParser @Autowired constructor(val applicationContext: ApplicationContext) : MangaParserPattern {
 
     private val PATH_SEPARATOR = '/'
 
     override fun getLastEpisode(url: String): Episode {
         val builder = getCorrectParserBuilder(url)
         val doc = downloadDoc(url)
-        return Episode(extractDigits(getElement(builder.episode, doc)), "", "")
+        val episode = Episode(extractDigits(getElement(builder.episode, doc)), "", "")
+
+        if (episode.episode < 0) {
+            if (builder.alternativeEpisode != null) {
+                val alternative = downloadDoc(url + PATH_SEPARATOR + 1)
+                val newEpisode = Episode(extractDigits(getElement(builder.alternativeEpisode, alternative, 1)), "", "")
+                if(newEpisode.episode > 0) {
+                    return newEpisode
+                }
+            }
+        }
+
+        return episode
     }
 
     override fun getFullInfo(url: String): Episode {
@@ -35,8 +48,12 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
                 getElement(builder.title, doc).toString())
     }
 
-    private fun getElement(builder: SelectorChain, doc: Document): Any {
-        val element = doc.select(builder.constructSelector())[0]
+    private fun getElement(builder: SelectorChain, doc: Document, index: Int = 0): Any {
+        val elementArr = doc.select(builder.constructSelector())
+        if (elementArr.size == 0) {
+            return StringUtils.EMPTY
+        }
+        val element = elementArr[index]
         return when (builder.attr.type) {
             ATTRIBUTE -> element.attr(builder.attr.value)
             METHOD -> {
@@ -48,11 +65,14 @@ class JsoupMangaParser @Autowired constructor(val applicationContext: Applicatio
     }
 
     private fun extractDigits(str: Any): Double {
+        if (StringUtils.isBlank(str as CharSequence?)) {
+            return -1.0
+        }
         var digitsString = str.toString()
-        if (digitsString.last().equals(PATH_SEPARATOR)) {
+        if (digitsString.last() == PATH_SEPARATOR) {
             digitsString = digitsString.dropLast(1)
         }
-        if(digitsString.indexOf(PATH_SEPARATOR) != -1) {
+        if (digitsString.indexOf(PATH_SEPARATOR) != -1) {
             return digitsString.substring(digitsString.lastIndexOf(PATH_SEPARATOR))
                     .replace("\\D+".toRegex(), "").toDouble()
         } else {
