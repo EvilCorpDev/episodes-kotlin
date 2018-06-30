@@ -3,6 +3,7 @@ package com.nomaddev.config.db
 import com.mongodb.MongoClient
 import com.mongodb.MongoCredential
 import com.mongodb.ServerAddress
+import com.nomaddev.config.util.DbConfigUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.PropertySource
@@ -13,20 +14,15 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @EnableMongoRepositories(basePackages = arrayOf("com.nomaddev.server.repository"))
 @PropertySource("classpath:application.properties")
-open class MongoDbConfig @Autowired constructor(val env: Environment): AbstractMongoConfiguration() {
+open class MongoDbConfig @Autowired constructor(env: Environment): AbstractMongoConfiguration() {
 
-    val mongoHost = "mongodb.host"
-    val mongoUser = "mongodb.user"
-    val mongoPass = "mongodb.pass"
-    val mongoDbName = "mongodb.name"
-    val mongoPort = "mongodb.port"
+    private val prop = DbConfigUtil.copyMongoDbProperties(env)
 
     override fun mongo(): MongoClient {
-        val credentials = MongoCredential.createCredential(env.getProperty(mongoUser), env.getProperty(mongoDbName),
-                env.getProperty(mongoPass).toCharArray())
-        val addr = ServerAddress(env.getProperty(mongoHost), env.getProperty(mongoPort).toInt())
+        val credentials = MongoCredential.createCredential(prop.user, prop.name, prop.pass)
+        val addr = ServerAddress(prop.host, prop.port)
         return MongoClient(addr, arrayListOf(credentials))
     }
 
-    override fun getDatabaseName() = env.getProperty(mongoDbName)
+    override fun getDatabaseName(): String = prop.name
 }

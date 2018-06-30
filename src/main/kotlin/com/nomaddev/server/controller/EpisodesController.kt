@@ -47,7 +47,7 @@ class EpisodesController @Autowired constructor(val episodesService: EpisodesSer
     }
 
     @RequestMapping(value = "/episodes", method = arrayOf(RequestMethod.DELETE))
-    fun delManga(@RequestParam("title") mangaTitle: String) = episodesService.delManga(title = mangaTitle.replace("_", " "))
+    fun delMangaByTitle(@RequestParam("title") mangaTitle: String) = episodesService.delManga(title = mangaTitle.replace("_", " "))
 
     @RequestMapping(value = "/episodes/id/{id}", method = arrayOf(RequestMethod.DELETE))
     fun delMangaById(@PathVariable("id") mangaId: String) = episodesService.delMangaById(mangaId)
