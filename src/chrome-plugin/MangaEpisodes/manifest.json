@@ -16,7 +16,7 @@
  ],
 
  "background": {
-    "scripts": ["js/timer-job.js", "js/jquery.min.js", "js/config.js", "js/parser.js", "js/popup.js"],
+    "scripts": ["js/timer-job.js", "js/jquery.min.js", "js/config.js", "js/parser.js", "js/popup.js", "js/alarm.js"],
     "persistent": false
   },
 
