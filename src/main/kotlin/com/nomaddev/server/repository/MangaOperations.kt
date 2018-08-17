@@ -60,9 +60,11 @@ open class MangaOperations @Autowired constructor(val mongoOps: MongoTemplate) {
     }
 
     fun markAsReadById(mangaId: String) {
+        val manga = findOneById(mangaId)
         val findQuery = Query().addCriteria(Criteria.where("id").`is`(mangaId))
         val update = Update()
         update.set("isNew", false)
+        update.set("lastRead", manga.episode)
         mongoOps.updateFirst(findQuery, update, Manga::class.java)
     }
 

@@ -19,7 +19,7 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
     fun saveNewManga(url: String): Manga {
         val episode = parser.getFullInfo(url)
         val manga = Manga(episode = episode.episode, title = episode.title, img = episode.img, url = url,
-                updateTime = LocalDateTime.now(), isNew = true)
+                updateTime = LocalDateTime.now(), isNew = true, lastRead = 0.0)
         mangaOps.saveManga(manga)
         return manga
     }
@@ -30,7 +30,8 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
         if(newEpisode.episode > 0) {
             mangaOps.updateEpisodeByTitle(newEpisode.episode, title)
             return Manga(episode = newEpisode.episode, title = mangaByTitle.title, img = mangaByTitle.img,
-                    url = mangaByTitle.url, updateTime = LocalDateTime.now(), isNew = true)
+                    url = mangaByTitle.url, updateTime = LocalDateTime.now(), isNew = true,
+                    lastRead = mangaByTitle.lastRead)
         } else {
             return mangaByTitle
         }
@@ -44,7 +45,8 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
             isNew = true
         }
         return Manga(episode = newEpisode.episode, title = manga.title, img = manga.img,
-                url = manga.url, updateTime = LocalDateTime.now(), isNew = isNew)
+                url = manga.url, updateTime = LocalDateTime.now(), isNew = isNew,
+                lastRead = manga.lastRead)
     }
 
     fun listAllMangas() = mangaOps.findAllManga()
@@ -77,7 +79,8 @@ open class EpisodesService @Autowired constructor(val mangaOps: MangaOperations,
         val newEpisode = parser.getLastEpisode(mangaById.url)
         mangaOps.updateEpisodeById(newEpisode.episode, mangaId)
         return Manga(episode = newEpisode.episode, title = mangaById.title, img = mangaById.img,
-                url = mangaById.url, updateTime = LocalDateTime.now(), isNew = true)
+                url = mangaById.url, updateTime = LocalDateTime.now(), isNew = true,
+                lastRead = mangaById.lastRead)
     }
 
     fun markAsReadById(mangaId: String) = mangaOps.markAsReadById(mangaId)

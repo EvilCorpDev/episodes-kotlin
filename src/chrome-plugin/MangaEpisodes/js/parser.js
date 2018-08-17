@@ -72,7 +72,10 @@ function readManga($element) {
             updateLocalStorageIsNew(title, false);
             $element.removeClass('list-element__new-episode');
             $element.find('.read-btn').hide();
+            var lastReadCh = $element.find('div.manga-episode.inline').text();
+            $element.find('.last-read-chapter').text(lastReadCh);
             changeNewCount(false);
+            updateLastReadInLocalStorage(lastReadCh, id);
         }
     });
 }
@@ -129,4 +132,15 @@ function getElementId(title) {
             return allManga[i].id;
         }
     }
+}
+
+
+function updateLastReadInLocalStorage(lastReadChapter, mangaId) {
+    var mangaList = JSON.parse(localStorage.getItem('allManga'));
+    mangaList.forEach(function (item) {
+        if(item.id === mangaId) {
+            item.lastRead = lastReadChapter;
+        }
+    });
+    localStorage.setItem('allManga', JSON.stringify(mangaList))
 }

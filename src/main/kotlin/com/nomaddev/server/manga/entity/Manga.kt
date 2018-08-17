@@ -6,4 +6,4 @@ import java.time.LocalDateTime
 
 @JsonSerialize(using = JsonMangaSerializer::class)
 class Manga(val id: String? = null, val episode: Double = 0.0, val title: String = "", val img: String = "",
-            val url: String = "", val updateTime: LocalDateTime? = null, val isNew: Boolean = false)
+            val url: String = "", val updateTime: LocalDateTime? = null, val isNew: Boolean = false, val lastRead: Double = 0.0)

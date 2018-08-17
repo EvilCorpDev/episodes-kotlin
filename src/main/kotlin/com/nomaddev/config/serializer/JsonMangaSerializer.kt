@@ -22,6 +22,7 @@ open class JsonMangaSerializer(t: Class<Manga>?) : StdSerializer<Manga>(t) {
         gen?.writeStringField("url", value?.url)
         gen?.writeStringField("updateTime", formatter?.format(value?.updateTime))
         gen?.writeBooleanField("isNew", value?.isNew as Boolean)
+        gen?.writeNumberField("lastRead", value?.lastRead!!.toDouble())
         gen?.writeEndObject()
     }
 }
