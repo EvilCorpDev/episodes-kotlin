@@ -54,6 +54,6 @@ dependencies {
 }
 
 war{
- archiveName = 'episodes.war'
+ archiveName = 'manga.war'
  destinationDir = file('webapps')
 }
