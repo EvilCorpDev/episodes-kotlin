@@ -1,3 +1,3 @@
 const options = {
-    serverUrl: 'http://35.190.211.199:3030/manga'
+    serverUrl: 'http://34.77.8.76:3030/manga'
 };
